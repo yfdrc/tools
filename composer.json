@@ -1,0 +1,53 @@
+{
+    "name": "drc/tools",
+    "description": "Tools for automaker and db,etc ...",
+    "keywords": [
+        "drc",
+        "tools",
+        "automaker",
+        "db"
+    ],
+    "homepage": "https://code.aliyun.com/gdyfdrc/tools.git",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "yfdrc",
+            "email": "yfdrc@qq.com",
+            "homepage": "https://code.aliyun.com/u/gdyfdrc"
+        }
+    ],
+    "require": {
+        "php": ">=7.2",
+        "laravel/framework": ">=6.0",
+        "laravelcollective/html": ">=6.0"
+    },
+    "require-dev": {
+    },
+    "autoload": {
+        "psr-4": {
+            "Drc\\": "src/"
+        },
+        "files": [
+            "src\\Common\\helpers.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {}
+    },
+    "provide": {
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        },
+        "laravel": {
+            "providers": [
+                "Drc\\ToolsServiceProvider"
+            ],
+            "aliases": {
+                "DrcTools": "Drc\\Facades\\Tools"
+            }
+        }
+    }
+}

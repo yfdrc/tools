@@ -1,0 +1,29 @@
+<?php
+/**
+ * @author hernan ariel de luca
+ * Date: 12/07/2017
+ * Time: 16:15
+ */
+
+namespace Drc\DB\Exporter\Seeder;
+
+use Drc\DB\Exporter\Action\AbstractAction;
+use Drc\DB\Exporter\Exception\NonMethodDefinedException;
+
+class SqlServerSeeder extends AbstractAction
+{
+    public function convert($database = null)
+    {
+        throw new NonMethodDefinedException('SqlServerSeeder->convert() is not implemented');
+    }
+
+    protected function compile()
+    {
+        throw new NonMethodDefinedException('SqlServerSeeder->compile() is not implemented');
+    }
+
+    public function write()
+    {
+        throw new NonMethodDefinedException('SqlServerSeeder->write() is not implemented');
+    }
+}
