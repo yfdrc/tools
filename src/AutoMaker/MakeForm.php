@@ -128,7 +128,7 @@ class MakeForm extends abstractFormat
         if ($pz["edit"] == []) {
             foreach ($pz["belongto"] as $key => $value) {
                 $tmedit .= "$s7$pg$s8" . self::Format_label($key . "_id", $value, $c3) . "\n";
-                $tmedit .= "$s8$d9$s9" . self::Format_selectVar($key . "_id", $key, "task->$key" . "->name", $cc) . "\n$s8$dd$s7$dd";
+                $tmedit .= "$s8$d9$s9" . self::Format_selectVar($key . "_id", $key, "task->$key" . "->id", $cc) . "\n$s8$dd$s7$dd";
             }
         } else {
             foreach ($pz["edit"] as $key => $value) {
