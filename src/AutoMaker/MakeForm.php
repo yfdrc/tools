@@ -71,7 +71,7 @@ class MakeForm extends abstractFormat
             } else {
                 foreach ($pz["create"] as $key => $value) {
                     $tmcrea .= "$s7$pg$s8" . self::Format_label($key, $value[0], $c3) . "\n";
-                    $tmcrea .= self::tranInput("$key","$value[2]","null",false,"$value[1]","$s8$d9$s9","\n$s8$dd$s7$dd","",$cc);
+                    $tmcrea .= self::tranInput("$key","null","null",false,"$value[1]","$s8$d9$s9","\n$s8$dd$s7$dd","",$cc);
                 }
             }
         }
@@ -80,8 +80,8 @@ class MakeForm extends abstractFormat
         foreach ($pz["bixu"] as $key => $value) {
             if (is_array($value)) {
                 $nrbixu .= "$s7$pg$s8" . self::Format_label($key, $value[0], $c3) . "\n";
-                $nrbixu .= self::tranInput("$key","$value[2]","null",false,"$value[1]","$s8$d9$s9","\n$s8$dd$s7$dd","",$cc);
-             } else {
+                $nrbixu .= self::tranInput("$key","null","null",false,"$value[1]","$s8$d9$s9","\n$s8$dd$s7$dd","",$cc);
+            } else {
                 $nrbixu .= "$s7$pg$s8" . self::Format_label($key, $value, $c3) . "\n";
                 $nrbixu .= "$s8$d9$s9" . self::Format_text($key, "null", $cc) . "\n$s8$dd$s7$dd";
             }
@@ -91,7 +91,7 @@ class MakeForm extends abstractFormat
         foreach ($pz["qita"] as $key => $value) {
             if (is_array($value)) {
                 $nrqita .= "$s5$pg$s6" . self::Format_label($key, $value[0], $c3) . "\n";
-                $nrqita .= self::tranInput("$key","$value[2]","null",false,"$value[1]","$s8$d9$s9","\n$s8$dd$s7$dd","",$cc);
+                $nrqita .= self::tranInput("$key","null","null",false,"$value[1]","$s8$d9$s9","\n$s8$dd$s7$dd","",$cc);
             } else {
                 $nrqita .= "$s5$pg$s6" . self::Format_label($key, $value, $c3) . "\n";
                 $nrqita .= "$s6$d9$s7" . self::Format_text($key, "null", $cc) . "\n$s6$dd$s5$dd";
@@ -128,12 +128,12 @@ class MakeForm extends abstractFormat
         if ($pz["edit"] == []) {
             foreach ($pz["belongto"] as $key => $value) {
                 $tmedit .= "$s7$pg$s8" . self::Format_label($key . "_id", $value, $c3) . "\n";
-                $tmedit .= "$s8$d9$s9" . self::Format_selectVar($key . "_id", $key, $key . "->name", $cc) . "\n$s8$dd$s7$dd";
+                $tmedit .= "$s8$d9$s9" . self::Format_selectVar($key . "_id", $key, "task->$key" . "->name", $cc) . "\n$s8$dd$s7$dd";
             }
         } else {
             foreach ($pz["edit"] as $key => $value) {
                 $tmedit .= "$s7$pg$s8" . self::Format_label($key, $value[0], $c3) . "\n";
-                $tmedit .= self::tranInput("$key","$value[2]","null",true,"$value[1]","$s6$d9$s7","\n$s6$dd$s5$dd","",$cc);
+                $tmedit .= self::tranInput("$key","\$task->$key","null",true,"$value[1]","$s6$d9$s7","\n$s6$dd$s5$dd","",$cc);
             }
         }
 
@@ -141,7 +141,7 @@ class MakeForm extends abstractFormat
         foreach ($pz["bixu"] as $key => $value) {
             if (is_array($value)) {
                 $nrbixu .= "$s7$pg$s8" . self::Format_label($key, $value[0], $c3) . "\n";
-                $nrbixu .= self::tranInput("$key","$value[2]","null",true,"$value[1]","$s6$d9$s7","\n$s6$dd$s5$dd","",$cc);
+                $nrbixu .= self::tranInput("$key","\$task->$key","null",true,"$value[1]","$s6$d9$s7","\n$s6$dd$s5$dd","",$cc);
             } else {
                 $nrbixu .= "$s7$pg$s8" . self::Format_label($key, $value, $c3) . "\n";
                 $nrbixu .= "$s8$d9$s9" . self::Format_text($key, "null", $cc) . "\n$s8$dd$s7$dd";
@@ -152,7 +152,7 @@ class MakeForm extends abstractFormat
         foreach ($pz["qita"] as $key => $value) {
             if (is_array($value)) {
                 $nrqita .= "$s5$pg$s6" . self::Format_label($key, $value[0], $c3) . "\n";
-                $nrqita .= self::tranInput("$key","$value[2]","null",true,"$value[1]","$s6$d9$s7","\n$s6$dd$s5$dd","",$cc);
+                $nrqita .= self::tranInput("$key","\$task->$key","null",true,"$value[1]","$s6$d9$s7","\n$s6$dd$s5$dd","",$cc);
             } else {
                 $nrqita .= "$s5$pg$s6" . self::Format_label($key, $value, $c3) . "\n";
                 $nrqita .= "$s6$d9$s7" . self::Format_text($key, "null", $cc) . "\n$s6$dd$s5$dd";
@@ -291,7 +291,8 @@ class MakeForm extends abstractFormat
         } else {
             foreach ($pz["show"] as $key => $value) {
                 if (is_array($value)) {
-                    $nrshow .= self::tranInputShow("$key","$value[2]","$value[1]","$s6$d9$s8","\n$s7$dd$s6$dd","",$cc);
+                    $nrshow .= "$s6$pg$s7" . self::Format_label($key, $value[0], $c3) . "\n";
+                    $nrshow .= self::tranInputShow("$key","\$task->$key","$value[1]","$s6$d9$s8","\n$s7$dd$s6$dd","",$cc);
                 } else {
                     $nrshow .= "$s6$pg$s7" . self::Format_label($key, $value, $c3) . "\n";
                     $nrshow .= "$s7$d9$s8" . self::Format_text($key, "\$task->$key", $cc) . "\n$s7$dd$s6$dd";
@@ -300,7 +301,8 @@ class MakeForm extends abstractFormat
         }
         foreach ($pz["bixu"] as $key => $value) {
             if (is_array($value)) {
-                $nrshow .= self::tranInputShow("$key","$value[2]","$value[1]","$s6$d9$s8","\n$s7$dd$s6$dd","",$cc);
+                $nrshow .= "$s6$pg$s7" . self::Format_label($key, $value[0], $c3) . "\n";
+                $nrshow .= self::tranInputShow("$key","\$task->$key","$value[1]","$s6$d9$s8","\n$s7$dd$s6$dd","",$cc);
             } else {
                 $nrshow .= "$s6$pg$s7" . self::Format_label($key, $value, $c3) . "\n";
                 $nrshow .= "$s7$d9$s8" . self::Format_text($key, "\$task->$key", $cc) . "\n$s7$dd$s6$dd";
@@ -308,7 +310,8 @@ class MakeForm extends abstractFormat
         }
         foreach ($pz["qita"] as $key => $value) {
             if (is_array($value)) {
-                $nrshow .= self::tranInputShow("$key","$value[2]","$value[1]","$s6$d9$s8","\n$s7$dd$s6$dd","",$cc);
+                $nrshow .= "$s6$pg$s7" . self::Format_label($key, $value[0], $c3) . "\n";
+                $nrshow .= self::tranInputShow("$key","\$task->$key","$value[1]","$s6$d9$s8","\n$s7$dd$s6$dd","",$cc);
             } else {
                 $nrshow .= "$s6$pg$s7" . self::Format_label($key, $value, $c3) . "\n";
                 $nrshow .= "$s7$d9$s8" . self::Format_text($key, "\$task->$key", $cc) . "\n$s7$dd$s6$dd";
@@ -337,15 +340,15 @@ class MakeForm extends abstractFormat
                 break;
 
             case InputCs::Date:
-                $tm .= $pre . self::Format_date($key, $valueqt, $class) . $end;
+                $tm .= $pre . self::Format_date($key,self::toDate($value), $class) . $end;
                 break;
 
             case InputCs::DateTime:
-                $tm .= $pre . self::Format_datetime($key, $valueqt, $class) . $end;
+                $tm .= $pre . self::Format_datetime($key, self::toDatetime($value), $class) . $end;
                 break;
 
             case InputCs::Time:
-                $tm .= $pre . self::Format_time($key, $valueqt, $class) . $end;
+                $tm .= $pre . self::Format_time($key, self::toTime($value), $class) . $end;
                 break;
 
             case InputCs::Text:
@@ -388,15 +391,15 @@ class MakeForm extends abstractFormat
                 break;
 
             case InputCs::Date:
-                $tm .=date("Y-m-d",strtotime($value));
+                $tm .= self::toDate($value);
                 break;
 
             case InputCs::DateTime:
-                $tm .=date("Y-m-d h:i:sa",strtotime($value));
+                $tm .= self::toDatetime($value);
                 break;
 
             case InputCs::Time:
-                $tm .=date("h:i:sa",strtotime($value));
+                $tm .= self::toTime($value);
                 break;
 
             default:
@@ -420,15 +423,15 @@ class MakeForm extends abstractFormat
                 break;
 
             case InputCs::Date:
-                $tm .= $pre . self::Format_date($key, $value, self::ToReadOnly($class)) . $end;
+                $tm .= $pre . self::Format_date($key, self::toDate($value), self::ToReadOnly($class)) . $end;
                 break;
 
             case InputCs::DateTime:
-                $tm .= $pre . self::Format_datetime($key, $value, self::ToReadOnly($class)) . $end;
+                $tm .= $pre . self::Format_datetime($key, self::toDatetime($value), self::ToReadOnly($class)) . $end;
                 break;
 
             case InputCs::Time:
-                $tm .= $pre . self::Format_time($key, $value, self::ToReadOnly($class)) . $end;
+                $tm .= $pre . self::Format_time($key, self::toTime($value), self::ToReadOnly($class)) . $end;
                 break;
 
             case InputCs::Text:
