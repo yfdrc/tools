@@ -71,7 +71,7 @@ class ConfigForm extends abstractConfigBase
         $pz["shortcut"] = "shortcut01";
 
         $pz["create"] = [];
-        $pz["edit"] = ["role_id" => ["角色名称", InputCs::Text, "\$task->label"], "permission_id[]" => ["拥有权限",InputCs::Checkboxgroup,"permissions"]];
+        $pz["edit"] = ["label" => ["角色名称", InputCs::Text, "\$task->label"], "permission_id" => ["拥有权限",InputCs::Checkboxgroup,"permissions"]];
 
         $pz["index"] = ["label" => ["角色名称",InputCs::Text,""], "getPermissionsLabel()" => ["拥有权限",InputCs::Text,""]];
         $pz["show"] = ["label" => ["角色名称",InputCs::Text,""], "getPermissionsLabel()" => ["拥有权限",InputCs::Text,""]];
@@ -137,7 +137,7 @@ class ConfigForm extends abstractConfigBase
         $pz["shortcut"] = "shortcut01";
 
         $pz["create"] = [];
-        $pz["edit"] = ["user_id" => ["用户名称",InputCs::Text,"\$task->name"], "role_id" => ["拥有角色",InputCs::Checkboxgroup,"roles"]];
+        $pz["edit"] = ["name" => ["用户名称",InputCs::Text,"\$task->name"], "role_id" => ["拥有角色",InputCs::Checkboxgroup,"roles"]];
 
         $pz["index"] = ["name" => ["用户名称",InputCs::Text,""], "getRolesLabel()" => ["拥有角色",InputCs::Text,""]];
         $pz["show"] = ["name" => ["用户名称",InputCs::Text,""], "getRolesLabel()" => ["拥有角色",InputCs::Text,""]];

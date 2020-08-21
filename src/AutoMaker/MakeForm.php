@@ -133,7 +133,7 @@ class MakeForm extends abstractFormat
         } else {
             foreach ($pz["edit"] as $key => $value) {
                 $tmedit .= "$s7$pg$s8" . self::Format_label($key, $value[0], $c3) . "\n";
-                $tmedit .= self::tranInput("$key","\$task->$key","null",true,"$value[1]","$s6$d9$s7","\n$s6$dd$s5$dd","",$cc);
+                $tmedit .= self::tranInput("$key",$value[2],"null",true,"$value[1]","$s8$d9$s9","\n$s8$dd$s7$dd",$s9,$cc);
             }
         }
 
