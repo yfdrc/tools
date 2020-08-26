@@ -71,7 +71,7 @@ class MakeForm extends abstractFormat
             } else {
                 foreach ($pz["create"] as $key => $value) {
                     $tmcrea .= "$s7$pg$s8" . self::Format_label($key, $value[0], $c3) . "\n";
-                    $tmcrea .= self::tranInput("$key","null","null",false,"$value[1]","$s8$d9$s9","\n$s8$dd$s7$dd","",$cc);
+                    $tmcrea .= self::tranInputCreate("$key","null","$value[1]","$s8$d9$s9","\n$s8$dd$s7$dd","",$cc);
                 }
             }
         }
@@ -80,7 +80,7 @@ class MakeForm extends abstractFormat
         foreach ($pz["bixu"] as $key => $value) {
             if (is_array($value)) {
                 $nrbixu .= "$s7$pg$s8" . self::Format_label($key, $value[0], $c3) . "\n";
-                $nrbixu .= self::tranInput("$key","null","null",false,"$value[1]","$s8$d9$s9","\n$s8$dd$s7$dd","",$cc);
+                $nrbixu .= self::tranInputCreate("$key","null","$value[1]","$s8$d9$s9","\n$s8$dd$s7$dd","",$cc);
             } else {
                 $nrbixu .= "$s7$pg$s8" . self::Format_label($key, $value, $c3) . "\n";
                 $nrbixu .= "$s8$d9$s9" . self::Format_text($key, "null", $cc) . "\n$s8$dd$s7$dd";
@@ -91,7 +91,7 @@ class MakeForm extends abstractFormat
         foreach ($pz["qita"] as $key => $value) {
             if (is_array($value)) {
                 $nrqita .= "$s5$pg$s6" . self::Format_label($key, $value[0], $c3) . "\n";
-                $nrqita .= self::tranInput("$key","null","null",false,"$value[1]","$s8$d9$s9","\n$s8$dd$s7$dd","",$cc);
+                $nrqita .= self::tranInputCreate("$key","null","$value[1]","$s8$d9$s9","\n$s8$dd$s7$dd","",$cc);
             } else {
                 $nrqita .= "$s5$pg$s6" . self::Format_label($key, $value, $c3) . "\n";
                 $nrqita .= "$s6$d9$s7" . self::Format_text($key, "null", $cc) . "\n$s6$dd$s5$dd";
@@ -133,7 +133,7 @@ class MakeForm extends abstractFormat
         } else {
             foreach ($pz["edit"] as $key => $value) {
                 $tmedit .= "$s7$pg$s8" . self::Format_label($key, $value[0], $c3) . "\n";
-                $tmedit .= self::tranInput("$key",$value[2],"null",true,"$value[1]","$s8$d9$s9","\n$s8$dd$s7$dd",$s9,$cc);
+                $tmedit .= self::tranInputEdit("$key",$value[2],true,"$value[1]","$s8$d9$s9","\n$s8$dd$s7$dd",$s9,$cc);
             }
         }
 
@@ -141,7 +141,7 @@ class MakeForm extends abstractFormat
         foreach ($pz["bixu"] as $key => $value) {
             if (is_array($value)) {
                 $nrbixu .= "$s7$pg$s8" . self::Format_label($key, $value[0], $c3) . "\n";
-                $nrbixu .= self::tranInput("$key","\$task->$key","null",true,"$value[1]","$s6$d9$s7","\n$s6$dd$s5$dd","",$cc);
+                $nrbixu .= self::tranInputEdit("$key","\$task->$key",true,"$value[1]","$s6$d9$s7","\n$s6$dd$s5$dd","",$cc);
             } else {
                 $nrbixu .= "$s7$pg$s8" . self::Format_label($key, $value, $c3) . "\n";
                 $nrbixu .= "$s8$d9$s9" . self::Format_text($key, "null", $cc) . "\n$s8$dd$s7$dd";
@@ -152,7 +152,7 @@ class MakeForm extends abstractFormat
         foreach ($pz["qita"] as $key => $value) {
             if (is_array($value)) {
                 $nrqita .= "$s5$pg$s6" . self::Format_label($key, $value[0], $c3) . "\n";
-                $nrqita .= self::tranInput("$key","\$task->$key","null",true,"$value[1]","$s6$d9$s7","\n$s6$dd$s5$dd","",$cc);
+                $nrqita .= self::tranInputEdit("$key","\$task->$key",true,"$value[1]","$s6$d9$s7","\n$s6$dd$s5$dd","",$cc);
             } else {
                 $nrqita .= "$s5$pg$s6" . self::Format_label($key, $value, $c3) . "\n";
                 $nrqita .= "$s6$d9$s7" . self::Format_text($key, "null", $cc) . "\n$s6$dd$s5$dd";
@@ -327,16 +327,71 @@ class MakeForm extends abstractFormat
         return $nrshow;
     }
 
-    private static function tranInput($key, $value, $valueqt, $hasvalueflag, $inputcs, $pre, $end, $wz, $class)
+    private static function tranInputCreate($key, $value, $inputcs, $pre, $end, $wz, $class)
     {
         $tm = "";
         switch ($inputcs) {
             case InputCs::Textarea:
-                $tm .= $pre . self::Format_textarea($key, $valueqt, $class) . $end;
+                $tm .= $pre . self::Format_textarea($key, "null", $class) . $end;
                 break;
 
             case InputCs::Password:
-                $tm .= $pre . self::Format_password($key,$valueqt , $class) . $end;
+                $tm .= $pre . self::Format_password($key,"null" , $class) . $end;
+                break;
+
+            case InputCs::Date:
+                $tm .= $pre . self::Format_date($key,date("Y-m-d"), $class) . $end;
+                break;
+
+            case InputCs::DateTime:
+                $tm .= $pre . self::Format_datetime($key,date("Y-m-d H:i:s"), $class) . $end;
+                break;
+
+            case InputCs::Time:
+                $tm .= $pre . self::Format_time($key, date("H:i:s"), $class) . $end;
+                break;
+
+            case InputCs::Text:
+                $tm .= "$pre" . self::Format_text($key, "null", $class) . $end;
+                break;
+
+            case InputCs::Select:
+                $tm .= $pre . self::Format_selectVar($key, $value, "null", $class) . $end;
+                break;
+
+            case InputCs::Checkbox:
+                $tm .= $pre . self::Format_checkboxVar($key, $value, "null", $class) . $end;
+                break;
+
+            case InputCs::Radio:
+                $tm .= $pre . self::Format_radioVar($key, $value, "null", $class) . $end;
+                break;
+
+            case InputCs::Checkboxgroup:
+                $tm .= $pre . self::Format_checkboxgroupVar($key, $value, "null", $wz) . $end;
+                break;
+
+            case InputCs::Radiogroup:
+                $tm .= $pre . self::Format_radiogroupVar($key, $value, "null", $wz) . $end;
+                break;
+
+            default:
+                break;
+        }
+
+        return $tm;
+    }
+
+    private static function tranInputEdit($key, $value, $hasvalueflag, $inputcs, $pre, $end, $wz, $class)
+    {
+        $tm = "";
+        switch ($inputcs) {
+            case InputCs::Textarea:
+                $tm .= $pre . self::Format_textarea($key, $value, $class) . $end;
+                break;
+
+            case InputCs::Password:
+                $tm .= $pre . self::Format_password($key,$value , $class) . $end;
                 break;
 
             case InputCs::Date:
@@ -352,7 +407,7 @@ class MakeForm extends abstractFormat
                 break;
 
             case InputCs::Text:
-                $tm .= "$pre" . self::Format_text($key, $valueqt, $class) . $end;
+                $tm .= "$pre" . self::Format_text($key, $value, $class) . $end;
                 break;
 
             case InputCs::Select:
@@ -419,7 +474,7 @@ class MakeForm extends abstractFormat
                 break;
 
             case InputCs::Password:
-                $tm .= $pre . self::Format_password($key,"", self::ToReadOnly($class)) . $end;
+                $tm .= $pre . self::Format_password($key,"null", self::ToReadOnly($class)) . $end;
                 break;
 
             case InputCs::Date:

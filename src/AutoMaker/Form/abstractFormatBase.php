@@ -56,6 +56,11 @@ abstract class abstractFormatBase extends abstractCommon
         return "{{ Form::textarea(\"$key\", $value, $class) }}";
     }
 
+    public static function Format_email($key, $value="null", $class="[]"): string
+    {
+        return "{{ Form::email(\"$key\", $value, $class) }}";
+    }
+
     public static function Format_date($key, $value="null", $class="[]"): string
     {
         return "{{ Form::date(\"$key\", $value, $class) }}";
@@ -84,11 +89,6 @@ abstract class abstractFormatBase extends abstractCommon
     public static function toTime($value): string
     {
         return "date(\"h:i:sa\",strtotime($value))";
-    }
-
-    public static function Format_email($key, $value="null", $class="[]"): string
-    {
-        return "{{ Form::email(\"$key\", $value, $class) }}";
     }
 
 }
