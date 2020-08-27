@@ -71,7 +71,7 @@ class MakeForm extends abstractFormat
             } else {
                 foreach ($pz["create"] as $key => $value) {
                     $tmcrea .= "$s7$pg$s8" . self::Format_label($key, $value[0], $c3) . "\n";
-                    $tmcrea .= self::tranInputCreate("$key","null","$value[1]","$s8$d9$s9","\n$s8$dd$s7$dd","",$cc);
+                    $tmcrea .= self::tranInputCreate("$key",$value[2],"$value[1]","$s8$d9$s9","\n$s8$dd$s7$dd","",$cc);
                 }
             }
         }
@@ -80,7 +80,7 @@ class MakeForm extends abstractFormat
         foreach ($pz["bixu"] as $key => $value) {
             if (is_array($value)) {
                 $nrbixu .= "$s7$pg$s8" . self::Format_label($key, $value[0], $c3) . "\n";
-                $nrbixu .= self::tranInputCreate("$key","null","$value[1]","$s8$d9$s9","\n$s8$dd$s7$dd","",$cc);
+                $nrbixu .= self::tranInputCreate("$key",$value[2],"$value[1]","$s8$d9$s9","\n$s8$dd$s7$dd","",$cc);
             } else {
                 $nrbixu .= "$s7$pg$s8" . self::Format_label($key, $value, $c3) . "\n";
                 $nrbixu .= "$s8$d9$s9" . self::Format_text($key, "null", $cc) . "\n$s8$dd$s7$dd";
@@ -91,7 +91,7 @@ class MakeForm extends abstractFormat
         foreach ($pz["qita"] as $key => $value) {
             if (is_array($value)) {
                 $nrqita .= "$s5$pg$s6" . self::Format_label($key, $value[0], $c3) . "\n";
-                $nrqita .= self::tranInputCreate("$key","null","$value[1]","$s8$d9$s9","\n$s8$dd$s7$dd","",$cc);
+                $nrqita .= self::tranInputCreate("$key",$value[2],"$value[1]","$s8$d9$s9","\n$s8$dd$s7$dd","",$cc);
             } else {
                 $nrqita .= "$s5$pg$s6" . self::Format_label($key, $value, $c3) . "\n";
                 $nrqita .= "$s6$d9$s7" . self::Format_text($key, "null", $cc) . "\n$s6$dd$s5$dd";
@@ -336,7 +336,7 @@ class MakeForm extends abstractFormat
                 break;
 
             case InputCs::Password:
-                $tm .= $pre . self::Format_password($key,"null" , $class) . $end;
+                $tm .= $pre . self::Format_text($key,"null" , $class) . $end;
                 break;
 
             case InputCs::Date:
@@ -356,23 +356,23 @@ class MakeForm extends abstractFormat
                 break;
 
             case InputCs::Select:
-                $tm .= $pre . self::Format_selectVar($key, $value, "null", $class) . $end;
+                $tm .= $pre . self::Format_select($key, "\$$value", "null", $class) . $end;
                 break;
 
             case InputCs::Checkbox:
-                $tm .= $pre . self::Format_checkboxVar($key, $value, "null", $class) . $end;
+                $tm .= $pre . self::Format_checkbox($key, "\$$value", "null", $class) . $end;
                 break;
 
             case InputCs::Radio:
-                $tm .= $pre . self::Format_radioVar($key, $value, "null", $class) . $end;
+                $tm .= $pre . self::Format_radio($key, "\$$value", "null", $class) . $end;
                 break;
 
             case InputCs::Checkboxgroup:
-                $tm .= $pre . self::Format_checkboxgroupVar($key, $value, "null", $wz) . $end;
+                $tm .= $pre . self::Format_checkboxgroup($key, "\$$value", "null", $wz) . $end;
                 break;
 
             case InputCs::Radiogroup:
-                $tm .= $pre . self::Format_radiogroupVar($key, $value, "null", $wz) . $end;
+                $tm .= $pre . self::Format_radiogroup($key, "\$$value", "null", $wz) . $end;
                 break;
 
             default:
@@ -387,11 +387,11 @@ class MakeForm extends abstractFormat
         $tm = "";
         switch ($inputcs) {
             case InputCs::Textarea:
-                $tm .= $pre . self::Format_textarea($key, $value, $class) . $end;
+                $tm .= $pre . self::Format_textarea($key,$value,$class) . $end;
                 break;
 
             case InputCs::Password:
-                $tm .= $pre . self::Format_password($key,$value , $class) . $end;
+                $tm .= $pre . self::Format_text($key,$value,$class) . $end;
                 break;
 
             case InputCs::Date:
