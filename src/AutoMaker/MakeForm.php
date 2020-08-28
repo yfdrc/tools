@@ -141,7 +141,7 @@ class MakeForm extends abstractFormat
         foreach ($pz["bixu"] as $key => $value) {
             if (is_array($value)) {
                 $nrbixu .= "$s7$pg$s8" . self::Format_label($key, $value[0], $c3) . "\n";
-                $nrbixu .= self::tranInputEdit("$key","\$task->$key",true,"$value[1]","$s6$d9$s7","\n$s6$dd$s5$dd","",$cc);
+                $nrbixu .= self::tranInputEdit("$key","\$task->$key",true,"$value[1]","$s8$d9$s9","\n$s8$dd$s7$dd","",$cc);
             } else {
                 $nrbixu .= "$s7$pg$s8" . self::Format_label($key, $value, $c3) . "\n";
                 $nrbixu .= "$s8$d9$s9" . self::Format_text($key, "null", $cc) . "\n$s8$dd$s7$dd";
@@ -391,7 +391,7 @@ class MakeForm extends abstractFormat
                 break;
 
             case InputCs::Password:
-                $tm .= $pre . self::Format_text($key,$value,$class) . $end;
+                $tm .= $pre . self::Format_text($key,"\"\"",$class) . $end;
                 break;
 
             case InputCs::Date:

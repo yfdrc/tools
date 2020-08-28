@@ -286,8 +286,11 @@ class MakeControl extends abstractFormat
             $nr .= "$s2$qxspace\$model = " . $classname . "::findOrFail(\$id);\n";
             if ($ignoreupdate == "") {
                 $nr .= "$s2$qxspace\$input = \$request->all();\n";
-            } else {
+            } else if ($ignoreupdate == "password"){
                 $nr .= "$s1$qxspace$s0 if(\$request[\"" . $ignoreupdate . "\"]==\"\"){\n$s3$qxspace\$input = \$request->except([\"password\"]);\n";
+                $nr .= "$s2$qxspace}else{\n$s3$qxspace\$input = \$request->all();\n$s3$qxspace\$input[\"password\"] =  bcrypt(\$request[\"password\"]);\n$s2$qxspace}\n";
+            }else{
+                $nr .= "$s1$qxspace$s0 if(\$request[\"" . $ignoreupdate . "\"]==\"\"){\n$s3$qxspace\$input = \$request->except([\"$ignoreupdate\"]);\n";
                 $nr .= "$s2$qxspace}else{\n$s3$qxspace\$input = \$request->all();\n$s2$qxspace}\n";
             }
             $nr .= "$s2$qxspace\$model->fill(\$input)->save();\n";
