@@ -224,13 +224,13 @@ class MakeForm extends abstractFormat
                 }
             }
         }
-        foreach ($pz["bixu"] as $key => $value) {
-            if (is_array($value)) {
-                if($value[1]!=InputCs::Password) $nrindex .= "$s8<th>" . $value[0] . "</th>\n";
-            } else {
-                $nrindex .= "$s8<th>" . $value . "</th>\n";
-            }
-        }
+//        foreach ($pz["bixu"] as $key => $value) {
+//            if (is_array($value)) {
+//                if($value[1]!=InputCs::Password) $nrindex .= "$s8<th>" . $value[0] . "</th>\n";
+//            } else {
+//                $nrindex .= "$s8<th>" . $value . "</th>\n";
+//            }
+//        }
         $nrindex .= "$s8<th></th>\n$s7</thead>\n$s7<tbody>\n$s8@foreach (" . "\$tasks as \$task" . ")\n$s9<tr>\n";
         if ($pz["index"] == []) {
             foreach ($pz["belongto"] as $key => $value) {
@@ -245,13 +245,13 @@ class MakeForm extends abstractFormat
                 }
             }
         }
-        foreach ($pz["bixu"] as $key => $value) {
-            if (is_array($value)) {
-                if($value[1]!=InputCs::Password) $nrindex .= "$s10<td width=\"$value[2]\">\n$s10$s1<div>{{ " . self::tranInputIndex($value[1],"\$task->" . $key) . " }}</div>\n$s10</td>\n";
-            } else {
-                $nrindex .= "$s10<td class=\"table-text\">\n$s10$s1<div>{{ " . "\$task->" . $key . " }}</div>\n$s10</td>\n";
-            }
-        }
+//        foreach ($pz["bixu"] as $key => $value) {
+//            if (is_array($value)) {
+//                if($value[1]!=InputCs::Password) $nrindex .= "$s10<td width=\"$value[2]\">\n$s10$s1<div>{{ " . self::tranInputIndex($value[1],"\$task->" . $key) . " }}</div>\n$s10</td>\n";
+//            } else {
+//                $nrindex .= "$s10<td class=\"table-text\">\n$s10$s1<div>{{ " . "\$task->" . $key . " }}</div>\n$s10</td>\n";
+//            }
+//        }
         if ($pz["showdelete"]) {
             $nrindex .= "$s10<td>\n$s10$s1$canshow{!! link_to(\"" . $pathclass . "/\$task->id\",\"详情\") !!}$end_can $canedit | {!! link_to(\"" . $pathclass . "/\$task->id/edit\",\"编辑\") !!}$end_can $candele | {!! link_to(\"" . $pathclass . "/\$task->id\",\"删除\") !!}$end_can\n$s10</td>\n";
         } else {
