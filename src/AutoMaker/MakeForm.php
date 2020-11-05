@@ -15,6 +15,13 @@ use Drc\AutoMaker\Form\abstractFormat;
 use Drc\AutoMaker\Form\InputCs;
 use Illuminate\Support\Str;
 
+//pz["create"]  0=>名称 1=>输入方式 2=>公式value
+//pz["edit"]    0=>名称 1=>输入方式 2=>公式value
+//pz["index"]   0=>名称 1=>输入方式 2=>宽度
+//pz["show"]    0=>名称 1=>输入方式
+//pz["bixu"]    0=>名称 1=>输入方式
+//pz["qita"]    0=>名称 1=>输入方式
+
 class MakeForm extends abstractFormat
 {
     const Version = "V1.0.0";
@@ -133,7 +140,7 @@ class MakeForm extends abstractFormat
         } else {
             foreach ($pz["edit"] as $key => $value) {
                 $tmedit .= "$s7$pg$s8" . self::Format_label($key, $value[0], $c3) . "\n";
-                $tmedit .= self::tranInputEdit("$key",$value[2],true,"$value[1]","$s8$d9$s9","\n$s8$dd$s7$dd",$s9,$cc);
+                $tmedit .= self::tranInputEdit("$key","\$task->".$value[2],true,"$value[1]","$s8$d9$s9","\n$s8$dd$s7$dd",$s9,$cc);
             }
         }
 
@@ -286,7 +293,7 @@ class MakeForm extends abstractFormat
         if ($pz["show"] == []) {
             foreach ($pz["belongto"] as $key => $value) {
                 $nrshow .= "$s6$pg$s7" . self::Format_label($key, $value, $c3) . "\n";
-                $nrshow .= "$s7$d9$s8" . self::Format_text($key, "\$task->$key" . "->name", $cc) . "\n$s7$dd$s6$dd";
+                $nrshow .= "$s7$d9$s8" . self::Format_text($key, "\$task->$key" . "->name", self::ToReadOnly($cc)) . "\n$s7$dd$s6$dd";
             }
         } else {
             foreach ($pz["show"] as $key => $value) {
@@ -295,7 +302,7 @@ class MakeForm extends abstractFormat
                     $nrshow .= self::tranInputShow("$key","\$task->$key","$value[1]","$s6$d9$s8","\n$s7$dd$s6$dd","",$cc);
                 } else {
                     $nrshow .= "$s6$pg$s7" . self::Format_label($key, $value, $c3) . "\n";
-                    $nrshow .= "$s7$d9$s8" . self::Format_text($key, "\$task->$key", $cc) . "\n$s7$dd$s6$dd";
+                    $nrshow .= "$s7$d9$s8" . self::Format_text($key, "\$task->$key",  self::ToReadOnly($cc)) . "\n$s7$dd$s6$dd";
                 }
             }
         }
@@ -305,7 +312,7 @@ class MakeForm extends abstractFormat
                 $nrshow .= self::tranInputShow("$key","\$task->$key","$value[1]","$s6$d9$s8","\n$s7$dd$s6$dd","",$cc);
             } else {
                 $nrshow .= "$s6$pg$s7" . self::Format_label($key, $value, $c3) . "\n";
-                $nrshow .= "$s7$d9$s8" . self::Format_text($key, "\$task->$key", $cc) . "\n$s7$dd$s6$dd";
+                $nrshow .= "$s7$d9$s8" . self::Format_text($key, "\$task->$key", self::ToReadOnly($cc)) . "\n$s7$dd$s6$dd";
             }
         }
         foreach ($pz["qita"] as $key => $value) {
@@ -314,7 +321,7 @@ class MakeForm extends abstractFormat
                 $nrshow .= self::tranInputShow("$key","\$task->$key","$value[1]","$s6$d9$s8","\n$s7$dd$s6$dd","",$cc);
             } else {
                 $nrshow .= "$s6$pg$s7" . self::Format_label($key, $value, $c3) . "\n";
-                $nrshow .= "$s7$d9$s8" . self::Format_text($key, "\$task->$key", $cc) . "\n$s7$dd$s6$dd";
+                $nrshow .= "$s7$d9$s8" . self::Format_text($key, "\$task->$key", self::ToReadOnly($cc)) . "\n$s7$dd$s6$dd";
             }
         }
 
@@ -431,7 +438,7 @@ class MakeForm extends abstractFormat
                 break;
 
             case InputCs::TextRead:
-                $tm .= "$pre" . self::Format_text($key, $value, self::ToReadOnly($class)) . $end;
+                $tm .= "$pre" . "{{ Form::label(\"$key\", $value, $class) }}" . $end;
                 break;
 
             default:
