@@ -80,7 +80,7 @@ class MakeForm extends abstractFormat
         foreach ($pz["bixu"] as $key => $value) {
             if (is_array($value)) {
                 $nrbixu .= "$s7$pg$s8" . self::Format_label($key, $value[0], $c3) . "\n";
-                $nrbixu .= self::tranInputCreate("$key",$value[2],"$value[1]","$s8$d9$s9","\n$s8$dd$s7$dd","",$cc);
+                $nrbixu .= self::tranInputCreate("$key","\$task->$key","$value[1]","$s8$d9$s9","\n$s8$dd$s7$dd","",$cc);
             } else {
                 $nrbixu .= "$s7$pg$s8" . self::Format_label($key, $value, $c3) . "\n";
                 $nrbixu .= "$s8$d9$s9" . self::Format_text($key, "null", $cc) . "\n$s8$dd$s7$dd";
@@ -91,7 +91,7 @@ class MakeForm extends abstractFormat
         foreach ($pz["qita"] as $key => $value) {
             if (is_array($value)) {
                 $nrqita .= "$s5$pg$s6" . self::Format_label($key, $value[0], $c3) . "\n";
-                $nrqita .= self::tranInputCreate("$key",$value[2],"$value[1]","$s8$d9$s9","\n$s8$dd$s7$dd","",$cc);
+                $nrqita .= self::tranInputCreate("$key","\$task->$key","$value[1]","$s8$d9$s9","\n$s8$dd$s7$dd","",$cc);
             } else {
                 $nrqita .= "$s5$pg$s6" . self::Format_label($key, $value, $c3) . "\n";
                 $nrqita .= "$s6$d9$s7" . self::Format_text($key, "null", $cc) . "\n$s6$dd$s5$dd";
@@ -428,6 +428,10 @@ class MakeForm extends abstractFormat
 
             case InputCs::Radiogroup:
                 $tm .= $pre . self::Format_radiogroupVar($key, $value, $hasvalueflag, $wz) . $end;
+                break;
+
+            case InputCs::TextRead:
+                $tm .= "$pre" . self::Format_text($key, $value, self::ToReadOnly($class)) . $end;
                 break;
 
             default:

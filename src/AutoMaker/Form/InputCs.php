@@ -24,4 +24,5 @@ class InputCs
     const Text = "text";
     const Textarea = "textarea";
     const Time = "time";
+    const TextRead = "textread";
 }
