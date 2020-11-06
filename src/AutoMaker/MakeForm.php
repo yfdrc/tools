@@ -105,10 +105,10 @@ class MakeForm extends abstractFormat
             }
         }
 
-        $nrbxts = "$s5$pp$s6$ph$s7" . "必填项目" . "\n$s6$dd$s6$pb";
+        $nrbxts = "$s5$ps$s6$ph$s7" . "必填项目" . "\n$s6$dd$s6$pb";
         $nrbxend = "$s6$dd$s5$dd";
 
-        $nrcreate = "$ext$s1$ps$s2$ph$shortcutcrea$s2$dd$s2$pb$s3$ps$s4$ph$s5" . "新建" . $pz["title"] . "\n$s4$dd$s4$pb$s5$fo\n";
+        $nrcreate = "$ext$s1$pi$s2$ph$shortcutcrea$s2$dd$s2$pb$s3$ps$s4$ph$s5" . "新建" . $pz["title"] . "\n$s4$dd$s4$pb$s5$fo\n";
         $nrcreate .= $nrbxts . $tmcrea . $nrbixu . $nrbxend . $nrqita . "$s5$pg$s6$d36\n$s7<button type=\"submit\" class=\"btn btn-success\">确定增加</button>\n$s6$dd$s5$dd$s5$fc\n$s4$dd$s3$dd$s2$dd$s1$dd\n@endsection\n";
 
         return $nrcreate;
@@ -166,10 +166,10 @@ class MakeForm extends abstractFormat
             }
         }
 
-        $nrbxts = "$s5$pp$s6$ph$s7" . "必填项目" . "\n$s6$dd$s6$pb";
+        $nrbxts = "$s5$pd$s6$ph$s7" . "必填项目" . "\n$s6$dd$s6$pb";
         $nrbxend = "$s6$dd$s5$dd";
 
-        $nredit = "$ext$s1$ps$s2$ph$shortcutedit$s2$dd$s2$pb$s3$pp$s4$ph$s5" . "编辑" . $pz["title"] . "\n$s4$dd$s4$pb$s5$fp\n";
+        $nredit = "$ext$s1$pi$s2$ph$shortcutedit$s2$dd$s2$pb$s3$pd$s4$ph$s5" . "编辑" . $pz["title"] . "\n$s4$dd$s4$pb$s5$fp\n";
         $nredit .= $nrbxts . $tmedit . $nrbixu . $nrbxend . $nrqita . "$s5$pg$s6$d36\n$s7<button type=\"submit\" class=\"btn btn-warning\">确定修改</button>\n$s6$dd$s5$dd$s5$fc\n$s4$dd$s3$dd$s2$dd$s1$dd\n@endsection\n";
 
         return $nredit;
@@ -217,7 +217,7 @@ class MakeForm extends abstractFormat
             $fpage = "$s6{!! \$tasks->links() !!}\n";
         }
 
-        $nrindex = "$ext$s1$pd$s2$ph$shortcutinde$s2$dd$s2$pb$chaxun$s3@if (count(\$tasks) > 0)\n$s4$pi$s5$ph$s6" . $pz["title"] . "列表\n$s5$dd$s5$pb$s6<table class=\"table table-striped task-table\">\n$s7<thead>\n";
+        $nrindex = "$ext$s1$pi$s2$ph$shortcutinde$s2$dd$s2$pb$chaxun$s3@if (count(\$tasks) > 0)\n$s4$pi$s5$ph$s6" . $pz["title"] . "列表\n$s5$dd$s5$pb$s6<table class=\"table table-striped task-table\">\n$s7<thead>\n";
         if ($pz["index"] == []) {
             foreach ($pz["belongto"] as $key => $value) {
                 $nrindex .= "$s8<th>" . $value . "</th>\n";
@@ -289,7 +289,7 @@ class MakeForm extends abstractFormat
             }
         }
 
-        $nrshow = "$ext$s1$ps$s2$ph$shortcutshow$s2$dd$s2$pb$s3$pp$s4$ph$s5" . $pz["title"] . "详情\n$s4$dd$s4$pb$s5$fd\n";
+        $nrshow = "$ext$s1$pi$s2$ph$shortcutshow$s2$dd$s2$pb$s3$pp$s4$ph$s5" . $pz["title"] . "详情\n$s4$dd$s4$pb$s5$fd\n";
         if ($pz["show"] == []) {
             foreach ($pz["belongto"] as $key => $value) {
                 $nrshow .= "$s6$pg$s7" . self::Format_label($key, $value, $c3) . "\n";
@@ -546,7 +546,7 @@ class MakeForm extends abstractFormat
         $s9 = $s1 . $s8;
         $s10 = $s1 . $s9;
         $ps = "<div class=\"panel panel-success\">\n";
-        $pd = "<div class=\"panel panel-default\">\n";
+        $pd = "<div class=\"panel panel-danger\">\n";
         $pi = "<div class=\"panel panel-info\">\n";
         $pp = "<div class=\"panel panel-primary\">\n";
         $ph = "<div class=\"panel-heading\">\n";
