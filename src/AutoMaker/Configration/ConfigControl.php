@@ -29,6 +29,9 @@ class ConfigControl extends abstractConfigBase
         $pz["Overrideedit"] = [];
         $pz["Overrideupdate"] = [];
 
+        $pz["addstore"] = [];
+        $pz["addupdate"] = [];
+
         return $pz;
     }
 
@@ -48,6 +51,9 @@ class ConfigControl extends abstractConfigBase
         $pz["Overrideindex"] = ["roleid" => "auth()->user()->getRolesRight()", "tasks" => "Role::where(\"Right\", \"<=\", \$roleid)->get()"];
         $pz["Overrideedit"] = ["permissions" => "drc_selectAll(\"permissions\", \"label\")", "haspermissions" => "drc_selectAll(\"permission_role\", \"permission_id\", \"role_id\", \$id,\"=\",\"permission_id\")"];
         $pz["Overrideupdate"] = ["\$inputs = \$request->get(\"permission_id\");","\$model = Role::findOrFail(\$id);" ,"\$model->permissions()->detach();" ,"\$model->permissions()->attach(\$inputs);"];
+
+        $pz["addstore"] = [];
+        $pz["addupdate"] = [];
 
         return $pz;
     }
@@ -69,6 +75,9 @@ class ConfigControl extends abstractConfigBase
         $pz["Overrideedit"] = ["roles" => "drc_selectAll(\"roles\", \"label\",\"right\", auth()->user()->getRolesRight(),\"<=\")", "hasroles" => "drc_selectAll(\"role_user\", \"role_id\", \"user_id\", \$id,\"=\",\"role_id\")"];
         $pz["Overrideupdate"] = ["\$inputs = \$request->get(\"role_id\");","\$model = User::findOrFail(\$id);" ,"\$model->roles()->detach();" ,"\$model->roles()->attach(\$inputs);"];
 
+        $pz["addstore"] = [];
+        $pz["addupdate"] = [];
+
         return $pz;
     }
 
@@ -88,6 +97,9 @@ class ConfigControl extends abstractConfigBase
         $pz["Overrideindex"] = [];
         $pz["Overrideedit"] = [];
         $pz["Overrideupdate"] = [];
+
+        $pz["addstore"] = [];
+        $pz["addupdate"] = [];
 
         return $pz;
     }
@@ -109,6 +121,9 @@ class ConfigControl extends abstractConfigBase
         $pz["Overrideedit"] = [];
         $pz["Overrideupdate"] = [];
 
+        $pz["addstore"] = [];
+        $pz["addupdate"] = [];
+
         return $pz;
     }
 
@@ -128,6 +143,9 @@ class ConfigControl extends abstractConfigBase
         $pz["Overrideindex"] = ["tasks" => "User::getUsersAll()"];
         $pz["Overrideedit"] = [];
         $pz["Overrideupdate"] = [];
+
+        $pz["addstore"] = [];
+        $pz["addupdate"] = [];
 
         return $pz;
     }
