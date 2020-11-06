@@ -43,10 +43,10 @@ class MakeControl extends abstractFormat
         $nr .= static::GetConstruct($pz["classname"], $pz["namespace"]);
         $nr .= static::GetIndex($pz["classname"], $pz["Overrideindex"], $pz["cxflag"], $pz["cxkeyname"], $pz["cxnrname"], $pz["cxhsname"], $pz["pageflag"], $pz["qxflag"], $pz["qxindex"], $qxspace);
         $nr .= static::GetCreate($pz["showcreate"], $pz["belongto"], $pz["selectcreate"], $pz["qxflag"], $pz["qxcreate"], $qxspace);
-        $nr .= static::GetStore($pz["showcreate"], $pz["classname"], $pz["vaildcreate"], $pz["qxflag"], $pz["qxcreate"], $qxspace);
+        $nr .= static::GetStore($pz["showcreate"], $pz["classname"], $pz["vaildcreate"], $pz["qxflag"], $pz["qxcreate"], $qxspace, $pz["addstore"]);
         $nr .= static::GetShow($pz["classname"], $pz["OverrideClassname"], $pz["qxflag"], $pz["qxshow"], $qxspace);
         $nr .= static::GetEdit($pz["belongto"], $pz["classname"], $pz["OverrideClassname"], $pz["Overrideedit"], $pz["qxflag"], $pz["qxedit"], $qxspace);
-        $nr .= static::GetUpdate($pz["classname"], $pz["OverrideClassname"], $pz["Overrideupdate"], $pz["ignoreupdate"], $pz["vaildedit"], $pz["qxflag"], $pz["qxedit"], $qxspace);
+        $nr .= static::GetUpdate($pz["classname"], $pz["Overrideupdate"], $pz["ignoreupdate"], $pz["vaildedit"], $pz["qxflag"], $pz["qxedit"], $qxspace, $pz["addupdate"]);
         $nr .= static::GetDestroy($pz["showdelete"], $pz["classname"], $pz["qxflag"], $pz["qxdelete"], $qxspace);
 
         $nr .= "}\n";
@@ -196,7 +196,7 @@ class MakeControl extends abstractFormat
         return $nr;
     }
 
-    private static function GetStore($showflag, $classname, $vaildcreate, $qxflag = false, $qxcreate = "", $qxspace = "")
+    private static function GetStore($showflag, $classname, $vaildcreate, $qxflag = false, $qxcreate = "", $qxspace = "", $addstores = [])
     {
         if (!$showflag) return "";
         $s0 = "   ";
@@ -206,7 +206,11 @@ class MakeControl extends abstractFormat
         $nr = $smstore . "$s0 public function store(Request \$request)\n$s1{\n";
         $nr = $nr . self::checkQx($qxcreate, $qxflag, $s2);
         if ($vaildcreate != "") $nr .= "$s2$qxspace\$this->validate(\$request, " . $vaildcreate . ");\n";
-        $nr .= "$s2$qxspace\$input = \$request->all();\n$s2$qxspace" . $classname . "::create(\$input);\n$s2$qxspace" . self::reParent();
+        $nr .= "$s2$qxspace\$input = \$request->all();\n";
+        foreach ($addstores as $addstore){
+            $nr .= $addstore;
+        }
+        $nr .= "$s2$qxspace" . $classname . "::create(\$input);\n$s2$qxspace" . self::reParent();
         if ($qxflag) {
             $nr .= "$s2}\n$s2" . self::reParentErr("你没有新建权限。") . "$s1}\n\n";
         } else {
@@ -272,7 +276,7 @@ class MakeControl extends abstractFormat
         return $nr;
     }
 
-    private static function GetUpdate($classname, $OverrideClassname, $Overrideupdate, $ignoreupdate, $vaildedit, $qxflag = false, $qxedit = "", $qxspace = "")
+    private static function GetUpdate($classname, $Overrideupdate, $ignoreupdate, $vaildedit, $qxflag = false, $qxedit = "", $qxspace = "", $addupdates=[])
     {
         $s0 = "   ";
         $s1 = $s0 . " ";
@@ -292,6 +296,9 @@ class MakeControl extends abstractFormat
             }else{
                 $nr .= "$s1$qxspace$s0 if(\$request[\"" . $ignoreupdate . "\"]==\"\"){\n$s3$qxspace\$input = \$request->except([\"$ignoreupdate\"]);\n";
                 $nr .= "$s2$qxspace}else{\n$s3$qxspace\$input = \$request->all();\n$s2$qxspace}\n";
+            }
+            foreach ($addupdates as $addupdate){
+                $nr .= $addupdate;
             }
             $nr .= "$s2$qxspace\$model->fill(\$input)->save();\n";
         } else {
