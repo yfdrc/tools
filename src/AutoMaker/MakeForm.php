@@ -148,7 +148,7 @@ class MakeForm extends abstractFormat
         foreach ($pz["bixu"] as $key => $value) {
             if (is_array($value)) {
                 $nrbixu .= "$s7$pg$s8" . self::Format_label($key, $value[0], $c3) . "\n";
-                $nrbixu .= self::tranInputEdit("$key","\$task->$key",true,"$value[1]","$s8$d9$s9","\n$s8$dd$s7$dd","",$cc);
+                $nrbixu .= self::tranInputEdit("$key","$key",true,"$value[1]","$s8$d9$s9","\n$s8$dd$s7$dd","",$cc);
             } else {
                 $nrbixu .= "$s7$pg$s8" . self::Format_label($key, $value, $c3) . "\n";
                 $nrbixu .= "$s8$d9$s9" . self::Format_text($key, "null", $cc) . "\n$s8$dd$s7$dd";
@@ -159,7 +159,7 @@ class MakeForm extends abstractFormat
         foreach ($pz["qita"] as $key => $value) {
             if (is_array($value)) {
                 $nrqita .= "$s5$pg$s6" . self::Format_label($key, $value[0], $c3) . "\n";
-                $nrqita .= self::tranInputEdit("$key","\$task->$key",true,"$value[1]","$s6$d9$s7","\n$s6$dd$s5$dd","",$cc);
+                $nrqita .= self::tranInputEdit("$key","$key",true,"$value[1]","$s6$d9$s7","\n$s6$dd$s5$dd","",$cc);
             } else {
                 $nrqita .= "$s5$pg$s6" . self::Format_label($key, $value, $c3) . "\n";
                 $nrqita .= "$s6$d9$s7" . self::Format_text($key, "null", $cc) . "\n$s6$dd$s5$dd";

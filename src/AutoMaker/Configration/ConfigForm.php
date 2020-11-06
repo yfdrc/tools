@@ -144,7 +144,7 @@ class ConfigForm extends abstractConfigBase
 
         $pz["index"] = ["name" => ["用户名称",InputCs::Text,"10%"], "getRolesLabel()" => ["拥有角色",InputCs::Text,"60%"]];
         $pz["create"] = [];
-        $pz["edit"] = ["name" => ["用户名称",InputCs::Text,"\$task->name"], "role_id" => ["拥有角色",InputCs::Checkboxgroup,"roles"]];
+        $pz["edit"] = ["name" => ["用户名称",InputCs::Text,"name"], "role_id" => ["拥有角色",InputCs::Checkboxgroup,"roles"]];
 
         $pz["show"] = ["name" => ["用户名称",InputCs::Text], "getRolesLabel()" => ["拥有角色",InputCs::Text]];
         $pz["bixu"] = [];
