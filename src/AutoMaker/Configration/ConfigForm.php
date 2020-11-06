@@ -32,9 +32,9 @@ class ConfigForm extends abstractConfigBase
         $pz["shortcutflag"] = true;
         $pz["shortcut"] = "shortcut01";
 
-        $pz["index"] = ["getParentName()" => ["上级部门",InputCs::Text,"10%"],"name" => ["名称",InputCs::Text,"10%"],"description" => ["描述",InputCs::Text,"10%"], "telephone" => ["电话",InputCs::Text,"10%"], "email" => ["邮件",InputCs::Text,"10%"], "address" => ["地址",InputCs::Text,"10%"]];
+        $pz["index"] = ["getParentName()" => ["上级部门",InputCs::Text,"10%"],"name" => ["名称",InputCs::Text,"10%"],"description" => ["描述",InputCs::Text,"20%"], "telephone" => ["电话",InputCs::Text,"10%"], "email" => ["邮件",InputCs::Text,"10%"], "address" => ["地址",InputCs::Text,"10%"]];
         $pz["create"] = ["parent_id" => ["上级部门", InputCs::Select, "tasks"]];
-        $pz["edit"] = ["parent_id" => ["上级部门", InputCs::Text, "\$task->getParentName()"]];
+        $pz["edit"] = ["parent_id" => ["上级部门", InputCs::TextRead, "getParentName()"]];
 
         $pz["show"] = ["getParentName()" => ["上级部门",InputCs::Text]];
         $pz["bixu"] = ["name" => "名称","description" => "描述", "telephone" => "电话", "email" => "邮件", "address" => "地址"];
@@ -76,9 +76,9 @@ class ConfigForm extends abstractConfigBase
         $pz["shortcutflag"] = true;
         $pz["shortcut"] = "shortcut01";
 
-        $pz["index"] = ["label" => ["角色名称",InputCs::Text,"20%"], "getPermissionsLabel()" => ["拥有权限",InputCs::Text,"20%"]];
+        $pz["index"] = ["label" => ["角色名称",InputCs::Text,"10%"], "getPermissionsLabel()" => ["拥有权限",InputCs::Text,"70%"]];
         $pz["create"] = [];
-        $pz["edit"] = ["label" => ["角色名称", InputCs::Text, "\$task->label"], "permission_id" => ["拥有权限",InputCs::Checkboxgroup,"permissions"]];
+        $pz["edit"] = ["label" => ["角色名称", InputCs::Text, "label"], "permission_id" => ["拥有权限",InputCs::Checkboxgroup,"permissions"]];
 
         $pz["show"] = ["label" => ["角色名称",InputCs::Text], "getPermissionsLabel()" => ["拥有权限",InputCs::Text]];
         $pz["bixu"] = [];
@@ -98,7 +98,7 @@ class ConfigForm extends abstractConfigBase
         $pz["shortcutflag"] = true;
         $pz["shortcut"] = "shortcut01";
 
-        $pz["index"] = ["name" => ["权限名称",InputCs::Text,"20%"], "label" => ["权限标签",InputCs::Text,"20%"], "description" => ["权限描述",InputCs::Text,"20%"]];
+        $pz["index"] = ["name" => ["权限名称",InputCs::Text,"20%"], "label" => ["权限标签",InputCs::Text,"20%"], "description" => ["权限描述",InputCs::Text,"25%"]];
         $pz["create"] = [];
         $pz["edit"] = [];
 
@@ -120,7 +120,7 @@ class ConfigForm extends abstractConfigBase
         $pz["shortcutflag"] = true;
         $pz["shortcut"] = "shortcut01";
 
-        $pz["index"] = ["name" => ["角色名称",InputCs::Text,"10%"], "label" => ["角色标签",InputCs::Text,"10%"], "right" => ["角色权重",InputCs::Text,"10%"],"description" => ["角色描述",InputCs::Text,"20%"]];
+        $pz["index"] = ["name" => ["角色名称",InputCs::Text,"10%"], "label" => ["角色标签",InputCs::Text,"10%"], "right" => ["角色权重",InputCs::Text,"10%"],"description" => ["角色描述",InputCs::Text,"25%"]];
         $pz["create"] = [];
         $pz["edit"] = [];
 
@@ -142,7 +142,7 @@ class ConfigForm extends abstractConfigBase
         $pz["shortcutflag"] = true;
         $pz["shortcut"] = "shortcut01";
 
-        $pz["index"] = ["name" => ["用户名称",InputCs::Text,"20%"], "getRolesLabel()" => ["拥有角色",InputCs::Text,"20%"]];
+        $pz["index"] = ["name" => ["用户名称",InputCs::Text,"10%"], "getRolesLabel()" => ["拥有角色",InputCs::Text,"60%"]];
         $pz["create"] = [];
         $pz["edit"] = ["name" => ["用户名称",InputCs::Text,"\$task->name"], "role_id" => ["拥有角色",InputCs::Checkboxgroup,"roles"]];
 

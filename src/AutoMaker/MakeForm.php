@@ -140,7 +140,7 @@ class MakeForm extends abstractFormat
         } else {
             foreach ($pz["edit"] as $key => $value) {
                 $tmedit .= "$s7$pg$s8" . self::Format_label($key, $value[0], $c3) . "\n";
-                $tmedit .= self::tranInputEdit("$key","\$task->".$value[2],true,"$value[1]","$s8$d9$s9","\n$s8$dd$s7$dd",$s9,$cc);
+                $tmedit .= self::tranInputEdit("$key", $value[2],true,"$value[1]","$s8$d9$s9","\n$s8$dd$s7$dd",$s9,$cc);
             }
         }
 
@@ -394,7 +394,7 @@ class MakeForm extends abstractFormat
         $tm = "";
         switch ($inputcs) {
             case InputCs::Textarea:
-                $tm .= $pre . self::Format_textarea($key,$value,$class) . $end;
+                $tm .= $pre . self::Format_textarea($key,"\$task->".$value,$class) . $end;
                 break;
 
             case InputCs::Password:
@@ -402,31 +402,31 @@ class MakeForm extends abstractFormat
                 break;
 
             case InputCs::Date:
-                $tm .= $pre . self::Format_date($key,self::toDate($value), $class) . $end;
+                $tm .= $pre . self::Format_date($key,self::toDate("\$task->".$value), $class) . $end;
                 break;
 
             case InputCs::DateTime:
-                $tm .= $pre . self::Format_datetime($key, self::toDatetime($value), $class) . $end;
+                $tm .= $pre . self::Format_datetime($key, self::toDatetime("\$task->".$value), $class) . $end;
                 break;
 
             case InputCs::Time:
-                $tm .= $pre . self::Format_time($key, self::toTime($value), $class) . $end;
+                $tm .= $pre . self::Format_time($key, self::toTime("\$task->".$value), $class) . $end;
                 break;
 
             case InputCs::Text:
-                $tm .= "$pre" . self::Format_text($key, $value, $class) . $end;
+                $tm .= "$pre" . self::Format_text($key, "\$task->".$value, $class) . $end;
                 break;
 
             case InputCs::Select:
-                $tm .= $pre . self::Format_selectVar($key, $value, $key, $class) . $end;
+                $tm .= $pre . self::Format_selectVar($key, "\$task->".$value, $key, $class) . $end;
                 break;
 
             case InputCs::Checkbox:
-                $tm .= $pre . self::Format_checkboxVar($key, $value, $hasvalueflag, $class) . $end;
+                $tm .= $pre . self::Format_checkboxVar($key, "\$task->".$value, $hasvalueflag, $class) . $end;
                 break;
 
             case InputCs::Radio:
-                $tm .= $pre . self::Format_radioVar($key, $value, $hasvalueflag, $class) . $end;
+                $tm .= $pre . self::Format_radioVar($key, "\$task->".$value, $hasvalueflag, $class) . $end;
                 break;
 
             case InputCs::Checkboxgroup:
@@ -438,7 +438,7 @@ class MakeForm extends abstractFormat
                 break;
 
             case InputCs::TextRead:
-                $tm .= "$pre" . "{{ Form::label(\"$key\", $value, $class) }}" . $end;
+                $tm .= "$pre" . "{{ Form::label(\"$key\", \$task->$value, $class) }}" . $end;
                 break;
 
             default:

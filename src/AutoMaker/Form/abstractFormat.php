@@ -57,7 +57,7 @@ abstract class abstractFormat extends abstractFormatBase
         $s4 = $s2 . $s2;
 
         $fhz = "<table>\n";
-        $fhz = $fhz . "$wz$s1@foreach (\$$values as \$key=>\$value)\n";
+        $fhz = $fhz . "$wz$s1@foreach (\$task->$values as \$key=>\$value)\n";
         $fhz = $fhz . "$wz$s1<tr>\n";
         $fhz = $fhz . "$wz$s2<td>\n$wz$s3{{ \$value }}\n$wz$s2</td>\n";
         $fhz = $fhz . "$wz$s2<td width=\"10px\"></td>\n$wz$s2<td>\n";
@@ -84,7 +84,7 @@ abstract class abstractFormat extends abstractFormatBase
         $s4 = $s2 . $s2;
 
         $fhz = "$wz<table>\n";
-        $fhz = $fhz . "$wz$s1@foreach (\$$values as \$key=>\$value)\n";
+        $fhz = $fhz . "$wz$s1@foreach ($values as \$key=>\$value)\n";
         $fhz = $fhz . "$wz$s1<tr>\n";
         $fhz = $fhz . "$wz$s2<td>\n$wz$s3{{ \$value }}\n$wz$s2</td>\n";
         $fhz = $fhz . "$wz$s2<td width=\"10px\"></td>\n$wz$s2<td>\n";
