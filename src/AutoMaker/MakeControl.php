@@ -208,7 +208,7 @@ class MakeControl extends abstractFormat
         if ($vaildcreate != "") $nr .= "$s2$qxspace\$this->validate(\$request, " . $vaildcreate . ");\n";
         $nr .= "$s2$qxspace\$input = \$request->all();\n";
         foreach ($addstores as $addstore){
-            $nr .= $addstore;
+            $nr .= "$s2$qxspace$addstore;\n";
         }
         $nr .= "$s2$qxspace" . $classname . "::create(\$input);\n$s2$qxspace" . self::reParent();
         if ($qxflag) {
@@ -298,7 +298,7 @@ class MakeControl extends abstractFormat
                 $nr .= "$s2$qxspace}else{\n$s3$qxspace\$input = \$request->all();\n$s2$qxspace}\n";
             }
             foreach ($addupdates as $addupdate){
-                $nr .= $addupdate;
+                $nr .= "$s2$qxspace$addupdate;\n";
             }
             $nr .= "$s2$qxspace\$model->fill(\$input)->save();\n";
         } else {
