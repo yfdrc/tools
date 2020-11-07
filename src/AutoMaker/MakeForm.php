@@ -363,7 +363,8 @@ class MakeForm extends abstractFormat
                 break;
 
             case InputCs::Select:
-                $tm .= $pre . self::Format_select($key, "\$$value", "null", $class) . $end;
+                if($value!="[]") $value = "\$$value";
+                $tm .= $pre . self::Format_select($key, "$value", "null", $class) . $end;
                 break;
 
             case InputCs::Checkbox:
@@ -375,11 +376,11 @@ class MakeForm extends abstractFormat
                 break;
 
             case InputCs::Checkboxgroup:
-                $tm .= $pre . self::Format_checkboxgroup($key, "\$$value", "null", $wz) . $end;
+                $tm .= $pre . self::Format_checkboxgroupVar($key, "$value", false, $wz,$class) . $end;
                 break;
 
             case InputCs::Radiogroup:
-                $tm .= $pre . self::Format_radiogroup($key, "\$$value", "null", $wz) . $end;
+                $tm .= $pre . self::Format_radiogroupVar($key, "$value", false, $wz,$class) . $end;
                 break;
 
             default:
@@ -430,11 +431,11 @@ class MakeForm extends abstractFormat
                 break;
 
             case InputCs::Checkboxgroup:
-                $tm .= $pre . self::Format_checkboxgroupVar($key, $value, $hasvalueflag, $wz) . $end;
+                $tm .= $pre . self::Format_checkboxgroupVar($key, $value, $hasvalueflag, $wz,$class) . $end;
                 break;
 
             case InputCs::Radiogroup:
-                $tm .= $pre . self::Format_radiogroupVar($key, $value, $hasvalueflag, $wz) . $end;
+                $tm .= $pre . self::Format_radiogroupVar($key, $value, $hasvalueflag, $wz,$class) . $end;
                 break;
 
             case InputCs::TextRead:
