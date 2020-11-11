@@ -16,7 +16,7 @@ class ConfigControl extends abstractConfigBase
     {
         $pz = parent::getPzDepartment();
 
-        $pz["usearray"] = ["Illuminate\Support\Facades\Cache"];
+        $pz["usearray"] = ["Cache"];
 
         $pz["vaildcreate"] = "[\"name\" => \"required|unique:departments\"]";
         $pz["vaildedit"] = "[\"name\" => \"required\"]";
@@ -39,7 +39,7 @@ class ConfigControl extends abstractConfigBase
     {
         $pz = parent::getPzRolePerm();
 
-        $pz["usearray"] = ["Illuminate\Support\Facades\Cache"];
+        $pz["usearray"] = ["Cache"];
 
         $pz["vaildcreate"] = "";
         $pz["vaildedit"] = "";
@@ -62,7 +62,7 @@ class ConfigControl extends abstractConfigBase
     {
         $pz = parent::getPzUserRole();
 
-        $pz["usearray"] = ["App\Models\User", "Illuminate\Support\Facades\Cache"];
+        $pz["usearray"] = ["App\Models\User", "Cache"];
 
         $pz["vaildcreate"] = "";
         $pz["vaildedit"] = "";
@@ -85,7 +85,7 @@ class ConfigControl extends abstractConfigBase
     {
         $pz = parent::getPzPermission();
 
-        $pz["usearray"] = ["Illuminate\Support\Facades\Cache"];
+        $pz["usearray"] = ["Cache"];
 
         $pz["vaildcreate"] = "[\"name\" => \"required|unique:permissions\",\"label\" => \"required|unique:permissions\"]";
         $pz["vaildedit"] = "[\"name\" => \"required\",\"label\" => \"required\"]";
@@ -108,7 +108,7 @@ class ConfigControl extends abstractConfigBase
     {
         $pz = parent::getPzRole();
 
-        $pz["usearray"] = ["Illuminate\Support\Facades\Cache"];
+        $pz["usearray"] = ["Cache"];
 
         $pz["vaildcreate"] = "[\"name\" => \"required|unique:roles\",\"label\" => \"required|unique:roles\"]";
         $pz["vaildedit"] = "[\"name\" => \"required\",\"label\" => \"required\"]";
@@ -131,7 +131,7 @@ class ConfigControl extends abstractConfigBase
     {
         $pz = parent::getPzUser();
 
-        $pz["usearray"] = ["Illuminate\Support\Facades\Cache"];
+        $pz["usearray"] = ["Cache"];
 
         $pz["vaildcreate"] = "[\"name\" => \"required|unique:users\",\"email\" => \"required|unique:users\",\"department_id\" => \"required\",\"password\" => \"required\"]";
         $pz["vaildedit"] = "[\"name\" => \"required\",\"email\" => \"required\"]";

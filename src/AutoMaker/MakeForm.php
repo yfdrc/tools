@@ -190,13 +190,13 @@ class MakeForm extends abstractFormat
         $fpage = "";
 
         if ($pz["pageflag"] && $pz["cxflag"]) {
-            $chaxun = "$s3<div>\n$s4<form method=\"put\" class=\"form-inline\"]>\n$s5$pg$s6" . "每页行数：<input type=\"text\" class=\"form-control\" name=\"xshs\" value=\"{!! Illuminate\Support\Facades\Cache::get(\"" . $pz["cxhsname"] . "\") !!}\">\n$s5$dd$s5$pg$s6" . "查询：<input type=\"text\" class=\"form-control\" name=\"cxnr\" value=\"{!! Illuminate\Support\Facades\Cache::get(\"" . $pz["cxnrname"] . "\") !!}\" placeholder=\"" . $pz["cxholder"] . "\">\n$s5$dd$s5<button type=\"submit\" class=\"btn btn-default\">确定</button>\n$s4</form>\n$s3$dd";
+            $chaxun = "$s3<div>\n$s4<form method=\"put\" class=\"form-inline\"]>\n$s5$pg$s6" . "每页行数：<input type=\"text\" class=\"form-control\" name=\"xshs\" value=\"{!! Cache::get(\"" . $pz["cxhsname"] . "\") !!}\">\n$s5$dd$s5$pg$s6" . "查询：<input type=\"text\" class=\"form-control\" name=\"cxnr\" value=\"{!! Cache::get(\"" . $pz["cxnrname"] . "\") !!}\" placeholder=\"" . $pz["cxholder"] . "\">\n$s5$dd$s5<button type=\"submit\" class=\"btn btn-default\">确定</button>\n$s4</form>\n$s3$dd";
         } else {
             if ($pz["cxflag"]) {
-                $chaxun = "$s3<div>\n$s4<form method=\"put\" class=\"form-inline\"]>\n$s5$pg$s6" . "查询：<input type=\"text\" class=\"form-control\" name=\"cxnr\" value=\"{!! Illuminate\Support\Facades\Cache::get(\"" . $pz["cxnrname"] . "\") !!}\" placeholder=\"" . $pz["cxholder"] . "\">\n$s5$dd$s5<button type=\"submit\" class=\"btn btn-default\">确定</button>\n$s4</form>\n$s3$dd";
+                $chaxun = "$s3<div>\n$s4<form method=\"put\" class=\"form-inline\"]>\n$s5$pg$s6" . "查询：<input type=\"text\" class=\"form-control\" name=\"cxnr\" value=\"{!! Cache::get(\"" . $pz["cxnrname"] . "\") !!}\" placeholder=\"" . $pz["cxholder"] . "\">\n$s5$dd$s5<button type=\"submit\" class=\"btn btn-default\">确定</button>\n$s4</form>\n$s3$dd";
             }
             if ($pz["pageflag"]) {
-                $chaxun = "$s3<div>\n$s4<form method=\"put\" class=\"form-inline\"]>\n$s5$pg$s6" . "每页行数：<input type=\"text\" class=\"form-control\" name=\"xshs\" value=\"{!! Illuminate\Support\Facades\Cache::get(\"" . $pz["cxhsname"] . "\") !!}\">\n$s5$dd$s5<button type=\"submit\" class=\"btn btn-default\">确定</button>\n$s4</form>\n$s3$dd";
+                $chaxun = "$s3<div>\n$s4<form method=\"put\" class=\"form-inline\"]>\n$s5$pg$s6" . "每页行数：<input type=\"text\" class=\"form-control\" name=\"xshs\" value=\"{!! Cache::get(\"" . $pz["cxhsname"] . "\") !!}\">\n$s5$dd$s5<button type=\"submit\" class=\"btn btn-default\">确定</button>\n$s4</form>\n$s3$dd";
             }
         }
         if ($pz["qxflag"]) {
